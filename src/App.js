@@ -1,12 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Head from './components/Head.js';
 
 function App() {
   return (
     <div className="App">
+      <Head></Head>
       <header className="App-header">
-        <h1>Playlistify</h1>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
