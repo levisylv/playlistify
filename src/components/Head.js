@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Head.css';
+import logo from '../Lotus.png';
 import {
     Collapse,
     Navbar,
@@ -31,6 +32,7 @@ import {
           return (
             <div>
               <Navbar color="light" light expand="md">
+                <img src={logo} className="Head-logo" alt="logo" />
                 <NavbarBrand href="/">Playlistify</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
