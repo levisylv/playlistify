@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from "react";
 import '../css/Head.css';
 import logo from '../Lotus.png';
 import {
@@ -13,6 +13,8 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
+import { LinkContainer } from "react-router-bootstrap";
+
 
     export default class Head extends React.Component {
         constructor(props) {
@@ -28,6 +30,9 @@ import {
             isOpen: !this.state.isOpen
           });
         }
+        handleLogout = event => {
+          this.userHasAuthenticated(false);
+        }
         render() {
           return (
             <div>
@@ -40,9 +45,21 @@ import {
                     <NavItem>
                       <NavLink href="/components/">Components</NavLink>
                     </NavItem>
-                    <NavItem>
-                      <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                    </NavItem>
+                    {this.state.isAuthenticated
+                      ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                      : <Fragment>
+                          <LinkContainer to="/login">
+                            <NavItem>
+                              <NavLink href="/login">Login</NavLink>
+                            </NavItem>
+                          </LinkContainer>
+                          <LinkContainer to="/register">
+                            <NavItem>
+                                <NavLink href="/register">Register</NavLink>
+                            </NavItem>
+                          </LinkContainer>
+                        </Fragment>
+                    }
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle nav caret>
                         Options

@@ -31,3 +31,34 @@
     transform: rotate(360deg);
   }
 }
+
+.Head {
+  text-align: center;
+}
+
+.Head-logo {
+  height: 8vmin;
+  pointer-events: none;
+}
+
+.Head-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Head-link {
+  color: #61dafb;
+}
+
+@keyframes Head-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
