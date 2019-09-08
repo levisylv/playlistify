@@ -17,9 +17,6 @@ import {
     DropdownItem } from 'reactstrap';
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, withRouter } from "react-router-dom";
-
-
-
   
 class App extends Component {
 

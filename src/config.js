@@ -1,7 +1,7 @@
 export default {
     apiGateway: {
       REGION: "us-east-1",
-      URL: "https://zf6fkpkt7l.execute-api.us-east-1.amazonaws.com/prod/playlistify"
+      URL: "https://zf6fkpkt7l.execute-api.us-east-1.amazonaws.com/prod"
     },
     cognito: {
       REGION: "us-east-1",

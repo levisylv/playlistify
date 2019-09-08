@@ -9,6 +9,7 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
+      isLoading: false,
       email: "",
       password: ""
     };
@@ -37,8 +38,6 @@ export default class Login extends Component {
       this.setState({ isLoading: false });
     }
   }
-  
-  
 
   render() {
     return (
