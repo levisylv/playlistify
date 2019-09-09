@@ -38,8 +38,8 @@ export default class Home extends Component {
       (playlist, i) =>
         i !== 0
           ? <LinkContainer
-              key={playlists.playlistId}
-              to={`/playlists/${playlists.playlistId}`}
+              key={playlist.playlistId}
+              to={`/playlists/${playlist.playlistId}`}
             >
               <ListGroupItem header={playlist.content.trim().split("\n")[0]}>
                 {"Created: " + new Date(playlist.createdAt).toLocaleString()}

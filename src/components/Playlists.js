@@ -124,24 +124,6 @@ export default class Playlists extends Component {
                 componentClass="textarea"
               />
             </FormGroup>
-            {this.state.playlist.attachment &&
-              <FormGroup>
-                <ControlLabel>Attachment</ControlLabel>
-                <FormControl.Static>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={this.state.attachmentURL}
-                  >
-                    {this.formatFilename(this.state.playlist.attachment)}
-                  </a>
-                </FormControl.Static>
-              </FormGroup>}
-            <FormGroup controlId="file">
-              {!this.state.playlist.attachment &&
-                <ControlLabel>Attachment</ControlLabel>}
-              <FormControl onChange={this.handleFileChange} type="file" />
-            </FormGroup>
             <LoaderButton
               block
               bsStyle="primary"
