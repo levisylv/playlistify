@@ -7,16 +7,14 @@ const Cards = (props) => {
     <Row>
       <Col className= "Cards-outline" sm="6">
         <Card body>
-          <CardTitle>Special Title Treatment</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-          <Button>Go somewhere</Button>
+          <CardTitle>See what is currently playing!</CardTitle>
+          <Button href= "/CurrentlyPlaying">Current Song</Button>
         </Card>
       </Col>
       <Col className= "Cards-outline" sm="6">
         <Card body>
-          <CardTitle>Special Title Treatment</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-          <Button>Go somewhere</Button>
+          <CardTitle>Make playlists with your favorite songs!</CardTitle>
+          <Button href= "/playlist/new">Make a Playlist</Button>
         </Card>
       </Col>
     </Row>

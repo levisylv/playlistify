@@ -84,9 +84,11 @@ class App extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/CurrentlyPlaying/">Currently Playing</NavLink>
               </NavItem>
-
+              <NavItem>
+                <NavLink href="/">Playlists</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

@@ -9,6 +9,7 @@ import NewPlaylist from "./components/NewPlaylist";
 import Playlists from "./components/Playlists";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import CurrentlyPlaying from "./components/CurrentlyPlaying";
 
 
 export default ({ childProps }) =>
@@ -18,7 +19,7 @@ export default ({ childProps }) =>
     <UnauthenticatedRoute path="/register" exact component={Register} props={childProps} />
     <AuthenticatedRoute path="/playlist/new" exact component={NewPlaylist} props={childProps} />
     <AuthenticatedRoute path="/playlists/:id" exact component={Playlists} props={childProps} />
-    
+    <AuthenticatedRoute path="/currentlyplaying" exact component={CurrentlyPlaying} props={childProps} />    
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
