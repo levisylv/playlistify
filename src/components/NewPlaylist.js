@@ -52,9 +52,9 @@ export default class NewPlaylist extends Component {
     }
   }
   
-  createPlaylist(note) {
+  createPlaylist(playlist) {
     return API.post("playlistify", "/playlistify", {
-      body: note
+      body: playlist
     });
   }
   

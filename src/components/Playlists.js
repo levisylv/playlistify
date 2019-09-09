@@ -43,7 +43,7 @@ export default class Playlists extends Component {
   }
 
   getPlaylist() {
-    return API.get("playlists", `/playlists/${this.props.match.params.id}`);
+    return API.get("playlistify", `/playlistify/${this.props.match.params.id}`);
   }
 
   validateForm() {
