@@ -51,7 +51,9 @@ class CurrentlyPlaying extends Component {
           is_playing: data.is_playing,
           progress_ms: data.progress_ms,
         });
-      }
+      },
+      fail: (xhr, textStatus, errorThrown) => {
+        alert('No Music Playing');      }
     });
   }
 
