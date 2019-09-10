@@ -44,6 +44,7 @@ class CurrentlyPlaying extends Component {
       beforeSend: (xhr) => {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },
+      
       success: (data) => {
         console.log("data", data);
         this.setState({
@@ -52,10 +53,11 @@ class CurrentlyPlaying extends Component {
           progress_ms: data.progress_ms,
         });
       },
-      fail: (xhr, textStatus, errorThrown) => {
+      error: (errorThrown) => {
         alert('No Music Playing');      }
     });
   }
+  
 
   render() {
 
@@ -78,8 +80,8 @@ class CurrentlyPlaying extends Component {
             <Player
               item={this.state.item}
               is_playing={this.state.is_playing}
-              progress_ms={this.progress_ms}
-            />
+              progress_ms={this.progress_ms}     
+            />  
           )}
         </header>
       </div>

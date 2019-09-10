@@ -8,6 +8,7 @@ import {
 import LoaderButton from "./LoaderButton";
 import "../css/Register.css";
 import { Auth } from "aws-amplify";
+import FacebookButton from "./FacebookLogin";
 
 export default class Register extends Component {
   constructor(props) {
@@ -22,7 +23,10 @@ export default class Register extends Component {
       newUser: null
     };
   }
-
+  handleFbLogin = () => {
+    this.props.userHasAuthenticated(true);
+  };
+  
   validateForm() {
     return (
       this.state.email.length > 0 &&
@@ -92,6 +96,8 @@ export default class Register extends Component {
           />
           <HelpBlock>Please check your email for the code.</HelpBlock>
         </FormGroup>
+        <FacebookButton onLogin={this.handleFbLogin}/>
+        <hr />
         <LoaderButton
           block
           bsSize="large"

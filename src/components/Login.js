@@ -3,6 +3,8 @@ import {FormControl, ControlLabel, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "../css/Login.css";
 import { Auth } from "aws-amplify";
+import FacebookButton from "./FacebookLogin";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -14,6 +16,10 @@ export default class Login extends Component {
       password: ""
     };
   }
+
+  handleFbLogin = () => {
+    this.props.userHasAuthenticated(true);
+  };
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -60,6 +66,8 @@ export default class Login extends Component {
               type="password"
             />
           </FormGroup>
+          <FacebookButton onLogin={this.handleFbLogin}/>
+          <hr />
           <LoaderButton
             block
             bsSize="large"
