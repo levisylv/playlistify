@@ -113,7 +113,6 @@ export default class Home extends Component {
       <div className="lander">
         <h1>Playlistify</h1>
         <p>A simple playlist making app</p>
-        <Cards></Cards>
       </div>
     );
   }
