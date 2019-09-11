@@ -8,6 +8,7 @@ import * as $ from "jquery";
 import Player from "./Player";
 import hash from "./hash";
 import Cards from "./Cards";
+import CurrentlyPlaying from "./CurrentlyPlaying";
 
 
 export default class Home extends Component {
@@ -124,6 +125,7 @@ export default class Home extends Component {
         <ListGroup>
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
+        <CurrentlyPlaying></CurrentlyPlaying>
       </div>
     );
   }

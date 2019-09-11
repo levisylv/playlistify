@@ -3,6 +3,7 @@ import * as $ from "jquery";
 import { authEndpoint, clientId, redirectUri, scopes } from "../spotifyAuth";
 import hash from "./hash";
 import Player from "./Player";
+import { Auth } from "aws-amplify";
 import "../css/CurrentlyPlaying.css";
 
 class CurrentlyPlaying extends Component {
