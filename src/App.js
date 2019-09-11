@@ -104,7 +104,7 @@ class App extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/CurrentlyPlaying/">Currently Playing</NavLink>
+                <NavLink href="/CurrentlyPlaying">Currently Playing</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">Playlists</NavLink>

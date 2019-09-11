@@ -139,6 +139,8 @@ export default class Register extends Component {
             type="password"
           />
         </FormGroup>
+        <FacebookButton onLogin={this.handleFbLogin}/>
+        <hr />
         <LoaderButton
           block
           bsSize="large"
