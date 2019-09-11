@@ -7,8 +7,8 @@ import { Auth } from "aws-amplify";
 import "../css/CurrentlyPlaying.css";
 
 class CurrentlyPlaying extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       token: null,
       item: {
