@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {FormControl, ControlLabel, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-import "../css/Login.css";
+import "../css/Login.css"; 
 import { Auth } from "aws-amplify";
 import FacebookButton from "./FacebookLogin";
 
@@ -66,8 +66,8 @@ export default class Login extends Component {
               type="password"
             />
           </FormGroup>
-          <FacebookButton onLogin={this.handleFbLogin}/>
-          <hr />
+          {/* <FacebookButton onLogin={this.handleFbLogin}/>
+          <hr /> */}
           <LoaderButton
             block
             bsSize="large"
