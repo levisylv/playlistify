@@ -96,8 +96,8 @@ export default class Register extends Component {
           />
           <HelpBlock>Please check your email for the code.</HelpBlock>
         </FormGroup>
-        {/* <FacebookButton onLogin={this.handleFbLogin}/>
-        <hr /> */}
+        <FacebookButton onLogin={this.handleFbLogin}/>
+        <hr />
         <LoaderButton
           block
           bsSize="large"

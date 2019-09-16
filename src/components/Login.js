@@ -66,8 +66,8 @@ export default class Login extends Component {
               type="password"
             />
           </FormGroup>
-          {/* <FacebookButton onLogin={this.handleFbLogin}/>
-          <hr /> */}
+          <FacebookButton onLogin={this.handleFbLogin}/>
+          <hr />
           <LoaderButton
             block
             bsSize="large"
