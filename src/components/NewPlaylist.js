@@ -15,7 +15,7 @@ export default class NewPlaylist extends Component {
       isLoading: null,
       content: ""
     };
-  }
+  } 
 
   validateForm() {
     return this.state.content.length > 0;
