@@ -11,12 +11,9 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+ } from 'reactstrap';
 import { LinkContainer } from "react-router-bootstrap";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import config from "./config";
   
 class App extends Component {
