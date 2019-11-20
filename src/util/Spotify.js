@@ -1,6 +1,7 @@
 const clientId = '5627f5908d354780ba1cf32839104b34';
 const redirect_uri = 'https://www.playlistify.levisylv.com/';
-let accessToken;
+
+let accessToken; 
 
 const Spotify = {
 	getAccessToken() {
