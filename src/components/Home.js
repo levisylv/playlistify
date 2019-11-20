@@ -11,6 +11,9 @@ import Cards from "./Cards";
 import CurrentlyPlaying from "./CurrentlyPlaying";
 import SpotifyPlaylist from "./SpotifyPlaylist";
 import Spotify from "../util/Spotify";
+import SearchBar from './SearchBar/SearchBar';
+import SearchResults from './SearchResults/SearchResults';
+import PlayList from './PlayList/PlayList';
 
 
 export default class Home extends Component {
@@ -172,10 +175,54 @@ export default class Home extends Component {
         <ListGroup>
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
-        <SpotifyPlaylist></SpotifyPlaylist>
         <CurrentlyPlaying></CurrentlyPlaying>
+        <div className="App">
+          <SearchBar onSearch={this.search} />
+          <div className="App-playlist">
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
+          </div>
+        </div>
       </div>
     );
+  }
+  addTrack(track) {
+    let tracks = this.state.playlistTracks;
+    if (!tracks.find(trackIndex => trackIndex.id === track.id)) {
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
+    }
+  }
+
+  removeTrack(track) {
+    let tracks = this.state.playlistTracks;
+    let newTracks = tracks.filter(trackIndex => trackIndex.id !== track.id);
+    this.setState({playlistTracks: newTracks});
+
+  }
+
+  updatePlaylistName(name) {
+    this.setState({playlistName: name});
+  }
+
+  savePlaylist() {
+    let tracks = this.state.playlistTracks;
+    if(tracks.length && this.state.playlistName) {
+      let trackURIs = tracks.map(trackIndex => trackIndex.uri);
+      Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+        this.setState({
+          playlistName: 'New Playlist',
+          playlistTracks: []
+        });
+        document.getElementById('Playlist-name').value = this.state.playlistName;
+      });
+    }
+  }
+
+  search(searchTerm) {
+    Spotify.search(searchTerm).then(results => {
+      this.setState({searchResults: results});
+    });
   }
 
   render() {

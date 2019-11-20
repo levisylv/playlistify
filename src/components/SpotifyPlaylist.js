@@ -22,7 +22,7 @@ class SpotifyPlaylist extends Component {
       is_playing: "Paused",
       progress_ms: 0
     };
-
+    this.SpotifyPlaylist = this.SpotifyPlaylist.bind(this);
   }
   componentDidMount() {
     // Set token
