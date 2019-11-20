@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "../css/Playlists.css";
 
-
+// Used to create custom playlists
 
 export default class Playlists extends Component {
   constructor(props) {

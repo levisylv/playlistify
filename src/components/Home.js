@@ -172,6 +172,7 @@ export default class Home extends Component {
         <ListGroup>
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
+        <SpotifyPlaylist></SpotifyPlaylist>
         <CurrentlyPlaying></CurrentlyPlaying>
       </div>
     );
