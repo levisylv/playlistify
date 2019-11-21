@@ -59,6 +59,25 @@ class CurrentlyPlaying extends Component {
         alert('No Music Playing');      }
     });
   }
+  getPlaylists(token) {
+    // Make a call using the token
+    $.ajax({
+      url: "https://api.spotify.com/v1/me/playlists",
+      type: "GET",
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      },
+      
+      success: (data) => {
+        console.log("data", data);
+        this.setState({
+          playlist: [],
+        });
+      },
+      error: (errorThrown) => {
+        alert('No Playlists');      }
+    });
+  }
   
 
   render() {
@@ -79,6 +98,9 @@ class CurrentlyPlaying extends Component {
             </a>
           )}
           {this.state.token && (
+            <Player 
+              playlist= {this.state.playlist}
+            />
             <Player
               item={this.state.item}
               is_playing={this.state.is_playing}
