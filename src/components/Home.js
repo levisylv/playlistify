@@ -3,7 +3,6 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "../css/Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-import { authEndpoint, clientId, redirectUri, scopes } from "../spotifyAuth";
 import * as $ from "jquery";
 import Player from "./Player";
 import hash from "./hash";

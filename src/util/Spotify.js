@@ -1,5 +1,5 @@
-const clientId = '5627f5908d354780ba1cf32839104b34';
-const redirect_uri = 'https://www.playlistify.levisylv.com/';
+export const clientId = '5627f5908d354780ba1cf32839104b34';
+export const redirect_uri = 'https://www.playlistify.levisylv.com/';
 
 let accessToken; 
 
@@ -22,6 +22,7 @@ const Spotify = {
 			window.location = accessUrl;
 		}
 	},
+	
 
 	search(searchTerm) {
 		const accessToken = Spotify.getAccessToken();
@@ -118,5 +119,13 @@ const Spotify = {
 		}
 	}
 };
+export const scopes = [
+    "user-top-read",
+    "user-read-currently-playing",
+    "user-read-playback-state",
+    "playlist-read-private",
+];
+export const authEndpoint = "https://accounts.spotify.com/authorize";
+
 
 export default Spotify;

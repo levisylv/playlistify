@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
-import { authEndpoint, clientId, redirectUri, scopes } from "../spotifyAuth";
+import { Spotify, authEndpoint, clientId, redirect_uri, scopes } from '../util/Spotify';
 import hash from "./hash";
 import Player from "./Player";
 import { Auth } from "aws-amplify";
@@ -70,7 +70,7 @@ class SpotifyPlaylist extends Component {
           {!this.state.token && (
             <a
               className="btn btn--loginApp-link"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes.join(
                 "%20"
               )}&response_type=token&show_dialog=true`}
             >
