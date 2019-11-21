@@ -3,7 +3,7 @@ export const redirect_uri = 'https://www.playlistify.levisylv.com/';
 
 let accessToken; 
 
-const Spotify = {
+export const Spotify = {
 	getAccessToken() {
 		if (accessToken) {
 			return accessToken;
@@ -22,7 +22,6 @@ const Spotify = {
 			window.location = accessUrl;
 		}
 	},
-	
 
 	search(searchTerm) {
 		const accessToken = Spotify.getAccessToken();
@@ -126,6 +125,4 @@ export const scopes = [
     "playlist-read-private",
 ];
 export const authEndpoint = "https://accounts.spotify.com/authorize";
-
-
 export default Spotify;

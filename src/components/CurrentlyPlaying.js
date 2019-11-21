@@ -11,7 +11,7 @@ class CurrentlyPlaying extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: null,
+      token: Spotify.accessToken,
       item: {
         album: {
           images: [{ url: "" }]
@@ -27,7 +27,7 @@ class CurrentlyPlaying extends Component {
   }
   componentDidMount() {
     // Set token
-    let _token = hash.access_token;
+    let _token = Spotify.accessToken;
 
     if (_token) {
       // Set token
