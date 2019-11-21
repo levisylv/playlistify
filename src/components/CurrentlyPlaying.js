@@ -98,13 +98,11 @@ class CurrentlyPlaying extends Component {
             </a>
           )}
           {this.state.token && (
-            <Player 
-              playlist= {this.state.playlist}
-            />
             <Player
               item={this.state.item}
               is_playing={this.state.is_playing}
-              progress_ms={this.progress_ms}     
+              progress_ms={this.progress_ms}  
+              playlist= {this.state.playlist}   
             />  
           )}
         </header>

@@ -30,6 +30,9 @@ const Player = props => {
             </div>
           </div>
           <div className="background" style={backgroundStyles} />{" "}
+          <div className="now-playing__side">
+            <div className="now-playing__name">{props.playlist}</div>
+        </div>
         </div>
       </div>
     );
