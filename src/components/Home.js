@@ -287,8 +287,6 @@ export default class Home extends Component {
         <h1 style={{...defaultStyle, 'font-size': '54px'}}>
           {this.state.user.name}'s Playlists
         </h1>
-        <PlaylistCounter playlists={playlistToRender}/>
-        <HoursCounter playlists={playlistToRender}/>
         <Filter onTextChange={text => {
             this.setState({filterString: text})
           }}/>
@@ -299,7 +297,7 @@ export default class Home extends Component {
       : <button onClick={() => {
           window.location = window.location.href.includes('localhost') 
             ? 'http://localhost:8888/login' 
-            : 'https://better-playlists-backend.herokuapp.com/login' }
+            : 'https://playlistify.levisylv.com/' }
         }
         style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Sign in with Spotify</button>
       }
