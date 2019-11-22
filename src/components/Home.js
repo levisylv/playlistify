@@ -297,7 +297,7 @@ export default class Home extends Component {
       : <button onClick={() => {
           window.location = window.location.href.includes('localhost') 
             ? 'http://localhost:8888/login' 
-            : 'https://playlistify.levisylv.com/' }
+            : 'https://playlistify.levisylv.com/login' }
         }
         style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Sign in with Spotify</button>
       }
