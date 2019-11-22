@@ -13,12 +13,13 @@ import Spotify from "../util/Spotify";
 import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 import PlayList from './PlayList/PlayList';
+import * as SpotifyWebApi from 'spotify-web-api-js';
 
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
-
+    this.spotifyApi = new SpotifyWebApi();
     this.state = {
       isLoading: true,
       playlists: [],
@@ -101,6 +102,71 @@ export default class Home extends Component {
       }
     });
   }
+
+  getPlaylists(token) {
+    this.spotifyApi.setAccessToken(token);
+    this.loading = this.loadingCtrl.create({
+      content: "Loading Playlists...",
+    });
+    this.loading.present();
+    this.spotifyApi.getUserPlaylists()
+      .then(data => {
+        if (this.loading) {
+          this.loading.dismiss();
+        }
+        this.playlists = data.items;
+      }, err => {
+        console.error(err);
+        if (this.loading) {
+          this.loading.dismiss();
+        }
+      });
+    // Make a call using the token
+    $.ajax({
+      url: "https://api.spotify.com/v1/me/playlists",
+      type: "GET",
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      },
+      
+      success: (data) => {
+        console.log("data", data);
+        this.setState({
+          playlist: [{}],
+        });
+      },
+      error: (errorThrown) => {
+        alert('No Playlists');      }
+    });
+  }
+  openPlaylist(item) {
+    this.navCtrl.push('PlaylistPage', { playlist: item });
+  }
+  renderSpotifyList(playlist) {
+    return [{}].concat(playlist).map(
+      (playlist, i) =>
+        i !== 0
+          ? <LinkContainer
+              key={playlist.playlistId}
+              to={`/playlists/${playlist.playlistId}`}
+            >
+              <ListGroupItem header={playlist.content.trim().split("\n")[0]}>
+                {"Created: " + new Date(playlist.createdAt).toLocaleString()}
+              </ListGroupItem>
+            </LinkContainer>
+          : <LinkContainer
+              key="new"
+              to="/playlist/new"
+            >
+              <ListGroupItem>
+                <h4>
+                  <b>{"\uFF0B"}</b> Create a new playlist
+                </h4>
+              </ListGroupItem>
+            </LinkContainer>
+    );
+  }
+
   componentDidMount() {
     // Set token
     let _token = hash.access_token;
