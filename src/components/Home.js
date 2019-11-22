@@ -368,6 +368,9 @@ export default class Home extends Component {
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
         <CurrentlyPlaying></CurrentlyPlaying>
+        {playlistToRender.map((playlist, i) => 
+            <Playlist playlist={playlist} index={i} />
+          )}
         {/* <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
