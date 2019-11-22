@@ -15,14 +15,73 @@ import SearchResults from './SearchResults/SearchResults';
 import PlayList from './PlayList/PlayList';
 import * as SpotifyWebApi from 'spotify-web-api-js';
 
+let defaultStyle = {
+  color: '#fff'
+};
+class PlaylistCounter extends Component {
+  render() {
+    return (
+      <div style={{...defaultStyle, width: "40%", display: 'inline-block'}}>
+        <h2>{this.props.playlists.length} playlists</h2>
+      </div>
+    );
+  }
+}
+
+class HoursCounter extends Component {
+  render() {
+    let allSongs = this.props.playlists.reduce((songs, eachPlaylist) => {
+      return songs.concat(eachPlaylist.songs)
+    }, [])
+    let totalDuration = allSongs.reduce((sum, eachSong) => {
+      return sum + eachSong.duration
+    }, 0)
+    return (
+      <div style={{...defaultStyle, width: "40%", display: 'inline-block'}}>
+        <h2>{Math.round(totalDuration/60)} hours</h2>
+      </div>
+    );
+  }
+}
+
+class Filter extends Component {
+  render() {
+    return (
+      <div style={defaultStyle}>
+        <img/>
+        <input type="text" onKeyUp={event => 
+          this.props.onTextChange(event.target.value)}/>
+      </div>
+    );
+  }
+}
+
+class Playlist extends Component {
+  render() {
+    let playlist = this.props.playlist
+    return (
+      <div style={{...defaultStyle, display: 'inline-block', width: "25%"}}>
+        <img src={playlist.imageUrl} style={{width: '60px'}}/>
+        <h3>{playlist.name}</h3>
+        <ul>
+          {playlist.songs.map(song => 
+            <li>{song.name}</li>
+          )}
+        </ul>
+      </div>
+    );
+  }
+}    
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.spotifyApi = new SpotifyWebApi();
     this.state = {
+      serverData: {},
+      filterString: '',
       isLoading: true,
-      playlists: [],
+      playlist: [],
       "searchResults": [],
       "playlistName": "New Playlist",
       "playlistTracks": [],
@@ -104,23 +163,7 @@ export default class Home extends Component {
   }
 
   getPlaylists(token) {
-    this.spotifyApi.setAccessToken(token);
-    this.loading = this.loadingCtrl.create({
-      content: "Loading Playlists...",
-    });
-    this.loading.present();
-    this.spotifyApi.getUserPlaylists()
-      .then(data => {
-        if (this.loading) {
-          this.loading.dismiss();
-        }
-        this.playlists = data.items;
-      }, err => {
-        console.error(err);
-        if (this.loading) {
-          this.loading.dismiss();
-        }
-      });
+    
     // Make a call using the token
     $.ajax({
       url: "https://api.spotify.com/v1/me/playlists",
@@ -139,33 +182,6 @@ export default class Home extends Component {
         alert('No Playlists');      }
     });
   }
-  openPlaylist(item) {
-    this.navCtrl.push('PlaylistPage', { playlist: item });
-  }
-  renderSpotifyList(playlist) {
-    return [{}].concat(playlist).map(
-      (playlist, i) =>
-        i !== 0
-          ? <LinkContainer
-              key={playlist.playlistId}
-              to={`/playlists/${playlist.playlistId}`}
-            >
-              <ListGroupItem header={playlist.content.trim().split("\n")[0]}>
-                {"Created: " + new Date(playlist.createdAt).toLocaleString()}
-              </ListGroupItem>
-            </LinkContainer>
-          : <LinkContainer
-              key="new"
-              to="/playlist/new"
-            >
-              <ListGroupItem>
-                <h4>
-                  <b>{"\uFF0B"}</b> Create a new playlist
-                </h4>
-              </ListGroupItem>
-            </LinkContainer>
-    );
-  }
 
   componentDidMount() {
     // Set token
@@ -175,7 +191,30 @@ export default class Home extends Component {
       this.setState({
         token: _token
       });
-      this.getCurrentlyPlaying(_token);
+      
+      this.getCurrentlyPlaying(_token); 
+      fetch('https://api.spotify.com/v1/me', {
+        headers: {'Authorization': 'Bearer ' + _token}
+      }).then(response => response.json())
+      .then(data => this.setState({
+        user: {
+          name: data.display_name
+        }
+      }))
+  
+      fetch('https://api.spotify.com/v1/me/playlists', {
+        headers: {'Authorization': 'Bearer ' + _token}
+      }).then(response => response.json())
+      .then(data => this.setState({
+        playlists: data.items.map(item => {
+          console.log(data.items)
+          return {
+            name: item.name,
+            imageUrl: item.images[0].url, 
+            songs: []
+          }
+      })
+      })) 
     }
   }
 
@@ -234,7 +273,37 @@ export default class Home extends Component {
   }
 
   renderPlaylists() {
+    let playlistToRender = 
+      this.state.user && 
+      this.state.playlists 
+        ? this.state.playlists.filter(playlist => 
+          playlist.name.toLowerCase().includes(
+            this.state.filterString.toLowerCase())) 
+        : []
     return (
+      <div className="App">
+      {this.state.user ?
+      <div>
+        <h1 style={{...defaultStyle, 'font-size': '54px'}}>
+          {this.state.user.name}'s Playlists
+        </h1>
+        <PlaylistCounter playlists={playlistToRender}/>
+        <HoursCounter playlists={playlistToRender}/>
+        <Filter onTextChange={text => {
+            this.setState({filterString: text})
+          }}/>
+        {playlistToRender.map(playlist => 
+          <Playlist playlist={playlist} />
+        )}
+      </div> 
+      : <button onClick={() => {
+          window.location = window.location.href.includes('localhost') 
+            ? 'http://localhost:8888/login' 
+            : 'https://better-playlists-backend.herokuapp.com/login' }
+        }
+        style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Sign in with Spotify</button>
+      }
+    
       <div className="playlists">
         <PageHeader>Your Playlists</PageHeader>
         <ListGroup>
@@ -248,6 +317,7 @@ export default class Home extends Component {
             <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
         </div> */}
+      </div>
       </div>
     );
   }
