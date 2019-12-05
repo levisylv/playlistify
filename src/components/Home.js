@@ -133,6 +133,9 @@ export default class Home extends Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
+    this.getSpotifyPlaylist = this.getPlaylists.bind(this);
+
+    console.log(this.getSpotifyPlaylist);
   }
 
   addTrack(track) {
@@ -231,10 +234,13 @@ export default class Home extends Component {
         }
       }))
   
+      this.getSpotifyPlaylist(_token);
       fetch('https://api.spotify.com/v1/me/playlists', {
         headers: {'Authorization': 'Bearer ' + _token}
       }).then(response => response.json())
       .then(playlistData => {
+        console.log("got playlist from spotify");
+        console.log(playlistData);
         let playlists = playlistData.items
         let trackDataPromises = playlists.map(playlist => {
           let responsePromise = fetch(playlist.tracks.href, {
@@ -368,10 +374,6 @@ export default class Home extends Component {
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
         <CurrentlyPlaying></CurrentlyPlaying>
-
-            <div className="now-playing__name"> {playlistToRender.map((playlist, i) => 
-            <Playlist playlist={playlist} index={i} />
-          )}</div>
         {/* <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
