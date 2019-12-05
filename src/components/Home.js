@@ -233,7 +233,8 @@ export default class Home extends Component {
           name: data.display_name
         }
       }))
-  
+      
+      console.log("calling get spotify plalist");
       this.getSpotifyPlaylist(_token);
       fetch('https://api.spotify.com/v1/me/playlists', {
         headers: {'Authorization': 'Bearer ' + _token}
@@ -275,6 +276,8 @@ export default class Home extends Component {
       })
       }))
     }
+
+    console.log('end of component.mount');
   }
 
   async componentDidMount() {
