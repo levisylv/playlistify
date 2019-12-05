@@ -135,7 +135,7 @@ export default class Home extends Component {
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
     this.getSpotifyPlaylist = this.getPlaylists.bind(this);
 
-    console.log(this.getSpotifyPlaylist);
+    //console.log(this.getSpotifyPlaylist);
   }
 
   addTrack(track) {
@@ -195,6 +195,7 @@ export default class Home extends Component {
   }
 
   getPlaylists(token) {
+    console.log('called getplaylists');
     
     // Make a call using the token
     $.ajax({
@@ -217,6 +218,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     // Set token
+    console.log("component did mount");
     let _token = hash.access_token;
     if (_token) {
       // Set token
