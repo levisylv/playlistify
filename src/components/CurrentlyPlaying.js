@@ -85,7 +85,11 @@ class CurrentlyPlaying extends Component {
   
 
   render() {
-
+    const listitems = this.state.playlists.map((item) => 
+    <li key={item.id}>
+        <a href="{item.href}">{item.name}</a>
+    </li>
+    )
     return (
         
       <div className="App">
@@ -110,9 +114,12 @@ class CurrentlyPlaying extends Component {
             />
             
           )}
-          {this.state.token && (
+          {this.state.token && this.state.num_playlist && (
             <div>
-              <h1>Number of playlists: {this.state.num_playlist}</h1>
+              <h2>Playlists ({this.state.num_playlist}</h2>
+              <ul>
+                {listitems}
+              </ul>
             </div>
           )}
         </header>
