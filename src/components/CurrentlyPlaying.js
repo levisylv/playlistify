@@ -20,6 +20,8 @@ class CurrentlyPlaying extends Component {
         artists: [{ name: "" }],
         duration_ms:0,
       },
+      playlists: [],
+      num_playlist: 0,
       is_playing: "Paused",
       progress_ms: 0
     };
@@ -72,7 +74,8 @@ class CurrentlyPlaying extends Component {
       success: (data) => {
         console.log("data", data);
         this.setState({
-          playlist: [],
+          playlists: data.items,
+          num_playlist: data.total,
         });
       },
       error: (errorThrown) => {
@@ -104,7 +107,13 @@ class CurrentlyPlaying extends Component {
               is_playing={this.state.is_playing}
               progress_ms={this.progress_ms}  
               playlist= {this.state.playlist}   
-            />  
+            />
+            
+          )}
+          {this.state.token && (
+            <div>
+              <h1>Number of playlists: {this.state.num_playlist}</h1>
+            </div>
           )}
         </header>
       </div>
