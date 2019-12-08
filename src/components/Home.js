@@ -380,7 +380,7 @@ export default class Home extends Component {
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
         <CurrentlyPlaying></CurrentlyPlaying>
-        <SpotifyPlaylist></SpotifyPlaylist>
+        
         
         {/* <div className="App">
           <SearchBar onSearch={this.search} />
