@@ -35,6 +35,7 @@ class CurrentlyPlaying extends Component {
         token: _token
       });
       this.getCurrentlyPlaying(_token);
+      this.getPlaylists(_token);
     }
   }
 
