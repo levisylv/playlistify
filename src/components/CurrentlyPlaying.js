@@ -87,7 +87,7 @@ class CurrentlyPlaying extends Component {
   render() {
     const listitems = this.state.playlists.map((item) => 
     <li key={item.id}>
-        <a href={item.href}>{item.name}</a>
+        <a href={item.external_urls.spotify}>{item.name}</a>
     </li>
     )
     return (
