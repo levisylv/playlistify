@@ -8,6 +8,7 @@ import Player from "./Player";
 import hash from "./hash";
 import Cards from "./Cards";
 import CurrentlyPlaying from "./CurrentlyPlaying";
+import Playlists from "./Playlists";
 import SpotifyPlaylist from "./SpotifyPlaylist";
 import Spotify from "../util/Spotify";
 import SearchBar from './SearchBar/SearchBar';
@@ -379,6 +380,8 @@ export default class Home extends Component {
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
         <CurrentlyPlaying></CurrentlyPlaying>
+        <Playlists></Playlists>
+        
         {/* <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
