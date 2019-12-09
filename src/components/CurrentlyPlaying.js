@@ -53,7 +53,7 @@ class CurrentlyPlaying extends Component {
       success: (data) => {
         console.log("data", data);
         this.setState({
-          item: data.item,
+          item: data.items,
           is_playing: data.is_playing,
           progress_ms: data.progress_ms,
         });
@@ -96,7 +96,7 @@ class CurrentlyPlaying extends Component {
         <header className="App-header">
         {this.state.token && this.state.num_playlist && (
             <div>
-              <h2>Spotify Playlists :{this.state.num_playlist}</h2>
+              <h2>Playlists :{this.state.num_playlist}</h2>
               <ul>
                 {listitems}
               </ul>

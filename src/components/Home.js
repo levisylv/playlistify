@@ -350,7 +350,6 @@ export default class Home extends Component {
       }) : []
     return (
 <div className="App">
-        
     
       <div className="playlists">
         <PageHeader>Your Playlists</PageHeader>
