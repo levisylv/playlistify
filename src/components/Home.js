@@ -353,7 +353,7 @@ export default class Home extends Component {
         
     
       <div className="playlists">
-        <h1>Your Playlists</h1>
+        <PageHeader>Your Playlists</PageHeader>
         <ListGroup>
           {!this.state.isLoading && this.renderPlaylistsList(this.state.playlists)}
         </ListGroup>
