@@ -66,7 +66,7 @@ class SpotifyPlaylist extends Component {
         
       <div className="App">
         <header className="App-header">
-            <h1>Spotify Playlists</h1>
+            <h1>Playlists</h1>
           {!this.state.token && (
             <a
               className="btn btn--loginApp-link"

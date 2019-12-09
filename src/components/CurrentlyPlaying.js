@@ -96,7 +96,7 @@ class CurrentlyPlaying extends Component {
         <header className="App-header">
         {this.state.token && this.state.num_playlist && (
             <div>
-              <h2>Playlists :{this.state.num_playlist}</h2>
+              <h2>Spotify Playlists :{this.state.num_playlist}</h2>
               <ul>
                 {listitems}
               </ul>
