@@ -350,29 +350,7 @@ export default class Home extends Component {
       }) : []
     return (
 <div className="App">
-        {this.state.user ?
-        <div>
-          <h1 style={{...defaultStyle, 
-            'font-size': '54px',
-            'margin-top': '5px'
-          }}>
-            {this.state.user.name}'s Playlists
-          </h1>
-          <PlaylistCounter playlists={playlistToRender}/>
-          <HoursCounter playlists={playlistToRender}/>
-          <Filter onTextChange={text => {
-              this.setState({filterString: text})
-            }}/>
-          {playlistToRender.map((playlist, i) => 
-            <Playlist playlist={playlist} index={i} />
-          )}
-        </div> : <button onClick={() => {
-            window.location = window.location.href.includes('localhost') 
-              ? 'http://localhost:8888/login' 
-              : 'https://playlistify.levisylv.com/#' }
-          }
-          style={{padding: '20px', 'font-size': '50px', 'margin-top': '20px'}}>Sign in with Spotify</button>
-        }
+        
     
       <div className="playlists">
         <PageHeader>Your Playlists</PageHeader>
