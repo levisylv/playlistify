@@ -98,7 +98,7 @@ class CurrentlyPlaying extends Component {
             <div>
               <h2>Playlists :{this.state.num_playlist}</h2>
               <ul style="list-style-type:none">
-                {listitems}
+                <li>{listitems}</li>
               </ul>
             </div>
           )}
