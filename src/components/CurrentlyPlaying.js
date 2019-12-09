@@ -94,6 +94,14 @@ class CurrentlyPlaying extends Component {
         
       <div className="App">
         <header className="App-header">
+        {this.state.token && this.state.num_playlist && (
+            <div>
+              <h2>Playlists :{this.state.num_playlist}</h2>
+              <ul>
+                {listitems}
+              </ul>
+            </div>
+          )}
             <h1>Currently Playing</h1>
           {!this.state.token && (
             <a
@@ -104,14 +112,6 @@ class CurrentlyPlaying extends Component {
             >
               Login to Spotify
             </a>
-          )}
-          {this.state.token && this.state.num_playlist && (
-            <div>
-              <h2>Playlists :{this.state.num_playlist}</h2>
-              <ul>
-                {listitems}
-              </ul>
-            </div>
           )}
           {this.state.token && (
             <Player
