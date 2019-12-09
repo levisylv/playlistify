@@ -53,7 +53,7 @@ class CurrentlyPlaying extends Component {
       success: (data) => {
         console.log("data", data);
         this.setState({
-          item: data.items,
+          item: data.item,
           is_playing: data.is_playing,
           progress_ms: data.progress_ms,
         });
